@@ -14,6 +14,7 @@ export default async function rewriteOriginResponse(request: Request, env: Env, 
             headers.append(name, value);
         }
     });
+    headers.set('Cache-Control', 'no-store');
 
     // Rewrite origin response body links
     let body: string | null = null;
