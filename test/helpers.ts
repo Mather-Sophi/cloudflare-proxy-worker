@@ -21,7 +21,7 @@ export function mockOriginFetch({
     status = 200,
     method = 'GET',
     requestBody = null,
-    responseBody = '<body><h1>Test</h1></body>',
+    responseBody = '<body><head></head><h1>Test</h1></body>',
     contentType = 'text/html',
     responseHeaders = {},
 }: MockOriginFetchOptions = {}) {

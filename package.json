@@ -5,9 +5,9 @@
     "scripts": {
         "deploy": "wrangler deploy --env ''",
         "dev": "wrangler dev",
-        "start": "wrangler dev",
+        "start": "wrangler dev -e local",
         "test": "vitest",
-        "cf-typegen": "wrangler types --env example",
+        "cf-typegen": "wrangler types --env example --strict-vars false",
         "lint": "npx biome check --diagnostic-level=error --no-errors-on-unmatched"
     },
     "cloudflare": {
@@ -26,6 +26,9 @@
             },
             "ANONYMOUS_SESSION_COOKIE_NAME": {
                 "description": "The cookie used to identify anonymous sessions."
+            },
+            "INJECT_SCRIPT_URL": {
+                "description": "The URL of the script to inject for web components."
             }
         }
     },

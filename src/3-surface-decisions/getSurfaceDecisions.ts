@@ -13,9 +13,7 @@ export default async function getSurfaceDecisions(
         surfaceSlug: env.SURFACE_SLUG,
         ...authIdentifier,
         path: new URL(request.url).pathname,
-        resourceMetadata: {
-            botManagement: request.cf?.botManagement,
-        },
+        cf: request.cf,
     })
 
     return [modifiedResponse, surfaceDecisions]

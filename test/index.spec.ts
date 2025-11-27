@@ -268,6 +268,27 @@ describe('MonetizationOS Proxy', () => {
                 expect(text).toContain('<h1>Test</h1>')
             },
         },
+        {
+            name: 'MOS element',
+            content: {
+                before: [
+                    {
+                        type: 'ELEMENT',
+                        schema: 'mos:test@1.0',
+                        props: {
+                            prop1: 'value1',
+                            prop2: true,
+                        },
+                    } as const,
+                ],
+            },
+            assert: (text: string) => {
+                expect(text).not.toContain('UNKNOWN')
+                expect(text).toContain('<h1>Test</h1>')
+                expect(text).toContain('<mos-test version="1.0" props="{&quot;prop1&quot;:&quot;value1&quot;,&quot;prop2&quot;:true}" />')
+                expect(text).toContain('<head><script src="https://example.com/web-components-latest.js" async defer></script></head>')
+            },
+        },
     ])('rewrites HTML component content - $name', async ({ content, assert }) => {
         mockOriginFetch()
         mockSurfaceDecisionsFetch({
