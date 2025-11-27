@@ -20,7 +20,8 @@
                 "SURFACE_SLUG": "web",
                 "AUTHENTICATED_USER_JWT_COOKIE_NAME": "jwt-cookie",
                 "ANONYMOUS_SESSION_COOKIE_NAME": "anon-session",
-                "INJECT_SCRIPT_URL": "https://example.com/web-components-latest.js"
+                "INJECT_SCRIPT_URL": "https://example.com/web-components-latest.js",
+                "MONETIZATION_OS_SECRET_KEY": "sk_test_123_key.payload"
             }
         },
         "local": {},

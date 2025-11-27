@@ -1,3 +1,4 @@
+import customEndpointRequest from './1-origin-request/customEndpointRequest'
 import performOriginRequest from './1-origin-request/performOriginRequest'
 import rewriteOriginResponse from './2-rewrite-origin-response/rewriteOriginResponse'
 import getSurfaceDecisions from './3-surface-decisions/getSurfaceDecisions'
@@ -7,6 +8,11 @@ import handleSurfaceComponents from './5-surface-components/handleSurfaceCompone
 export default {
     async fetch(request, env): Promise<Response> {
         // Step 1: Origin request
+        const customEndpointResponse = await customEndpointRequest(request)
+        if (customEndpointResponse) {
+            return customEndpointResponse
+        }
+
         const originResponse = await performOriginRequest(request, env)
         if (!originResponse.headers.get('Content-Type')?.startsWith('text/html')) {
             return originResponse

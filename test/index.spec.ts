@@ -43,6 +43,22 @@ describe('MonetizationOS Proxy', () => {
         expect(json.success).toBe(true)
     })
 
+    it('proxies mos API requests', async () => {
+        fetchMock
+            .get('https://api.monetizationos.com')
+            .intercept({ path: '/api/v1/envs/test_123/endpoints/custom-endpoint', method: 'GET' })
+            .reply(200, 'response')
+
+        const req = new Request('https://test.example/mos-endpoints/custom-endpoint', {
+            method: 'GET',
+            headers: { 'content-type': 'text/plain' },
+        })
+
+        const res = await SELF.fetch(req)
+        expect(res.status).toBe(200)
+        expect(await res.text()).toBe('response')
+    })
+
     it('fetch surface decisions for HTML responses', async () => {
         mockOriginFetch()
         mockSurfaceDecisionsFetch()
