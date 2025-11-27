@@ -6,7 +6,7 @@ type FetchSurfaceDecisionsArgs = {
     anonymousIdentifier?: string | undefined
     userJwt?: string | undefined
     path: string
-    resourceMetadata?: Record<string, unknown>
+    cf: CfProperties<unknown> | undefined
 }
 
 const host = env.MONETIZATION_OS_HOST_OVERRIDE ?? 'https://api.monetizationos.com'
@@ -16,7 +16,7 @@ export default async function fetchSurfaceDecisions({
     anonymousIdentifier,
     userJwt,
     path,
-    resourceMetadata = {},
+    cf,
 }: FetchSurfaceDecisionsArgs): Promise<SurfaceDecisionResponse | null> {
     try {
         return await fetch(`${host}/api/v1/surface-decisions`, {
@@ -28,8 +28,10 @@ export default async function fetchSurfaceDecisions({
                     userJwt,
                 },
                 resource: {
-                    ...resourceMetadata,
                     id: path,
+                },
+                cloudflare: {
+                    cf,
                 },
             }),
 

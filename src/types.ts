@@ -41,6 +41,11 @@ export type SurfaceBehaviorApi = {
     properties?: Record<string, unknown>
 } & Record<string, unknown>
 
+export type WebComponentElement<T = Record<string, unknown>> = {
+    schema: string
+    props: T
+}
+
 export type WebElement =
     | {
           type: 'HTML'
@@ -50,6 +55,9 @@ export type WebElement =
           type: 'TEXT'
           content: string
       }
+    | ({
+          type: 'ELEMENT'
+      } & WebComponentElement)
     | ({
           type: 'CUSTOM'
       } & Record<string, unknown>)

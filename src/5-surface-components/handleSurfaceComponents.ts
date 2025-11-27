@@ -1,3 +1,4 @@
+import { env } from 'cloudflare:workers'
 import type { SurfaceDecisionResponse } from '../types'
 import { ContentElementHandler } from './ContentElementHandler'
 
@@ -16,6 +17,14 @@ export default function handleSurfaceComponents(response: Response, surfaceDecis
         doRewrite = true
         htmlRewriter.on(componentBehavior.metadata.cssSelector, new ContentElementHandler(componentBehavior.content))
     })
+
+    if (env.INJECT_SCRIPT_URL) {
+        htmlRewriter.on('head', {
+            element(element) {
+                element.append(`<script src="${env.INJECT_SCRIPT_URL}" async defer></script>`, { html: true })
+            },
+        })
+    }
 
     return doRewrite ? htmlRewriter.transform(response) : response
 }
