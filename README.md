@@ -9,7 +9,7 @@ MonetizationOS powers monetization for human and non-human users alike. Use this
 
 ## Getting Started
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/MonetizationOS/cloudflare-proxy-worker)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/Mather-Sophi/cloudflare-proxy-worker)
 
 Click deploy to Cloudflare to get started or fork this repo to customize it for your needs.
 
